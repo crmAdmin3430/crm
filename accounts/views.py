@@ -22,7 +22,4 @@ def home(request):
     return render(request, "../index.html")
 
 def redirect_unknown(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        return redirect('login')
+    return redirect('login')
