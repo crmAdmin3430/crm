@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    .admin-stats {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .admin-stats table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .admin-stats th, .admin-stats td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .admin-stats th {
+      background-color: #51A1E3;
+      color: #fff;
+    }
+    .action-buttons a {
+      display: inline-block;
+      margin: 0 5px;
+      padding: 8px 12px;
+      background-color: #51A1E3;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .action-buttons a:hover {
+      background-color: #3b8ac2;
+    }
+  </style>
+
+  <div class="admin-stats">
+    <h2>Архив статистики</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Менеджер</th>
+          <th>Контакты</th>
+          <th>Организации</th>
+          <th>Заблокированные Telegram</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stat in stats %}
+        <tr>
+{#          <td>{{ stat.report_date }}</td>#}
+          <td>{{ stat.manager.username }}</td>
+          <td>{{ stat.contacts_count }}</td>
+          <td>{{ stat.organizations_count }}</td>
+          <td>{{ stat.blocked_telegram_count }}</td>
+          <td class="action-buttons">
+            <!-- Параметры для экспорта: фильтруем по дате и менеджеру -->
+{#            <a href="{% url 'export_excel' %}?report_date={{ stat.report_date }}&manager_id={{ stat.manager.id }}" target="_blank">Скачать в Excel</a>#}
+            <a href="{% url 'view_stat' stat.id %}" target="_blank">Открыть</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6">Нет данных</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
