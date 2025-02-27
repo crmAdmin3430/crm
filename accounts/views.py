@@ -19,7 +19,7 @@ def register(request):
 
 @login_required
 def home(request):
-    return render(request, "../index.html")
+    return render(request, "home.html")
 
 def redirect_unknown(request):
     if request.user.is_authenticated:
