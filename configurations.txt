@@ -4,7 +4,24 @@ admin
 tgm_bot@proton.me
 d3-3.2dd3L2-w2/23e
 
+password for tgm_bot@proton.me mail is - jecdep-jEfhar-fidwa2
 
-manager1
-top@gmail.com
+manager1:
+crm_managers@proton.me
 f2F33WFFR32
+
+mails for all other managers:
+crm_managers@proton.me
+password for proton mail - xufpa6-Kavpyv-heqzyk
+
+passwords for managers 2-80 are:
+crm_managerPassword{i}
+example
+crm_managerPassword2
+crm_managerPassword3
+...
+
+
+gitgub
+
+senxo6-jerbah-quqNes

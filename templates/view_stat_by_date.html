@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    .stat-detail-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .stat-detail-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .stat-detail-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .stat-detail-container th,
+    .stat-detail-container td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .stat-detail-container th {
+      background-color: #51A1E3;
+      color: #fff;
+    }
+  </style>
 
-</body>
-</html>
+  <div class="stat-detail-container">
+    <h2>Статистика за {{ report_date }}</h2>
+    {% if stats %}
+    <table>
+      <thead>
+        <tr>
+          <th>Менеджер</th>
+          <th>Контакты</th>
+          <th>Организации</th>
+          <th>Заблокированные Telegram</th>
+          <th>Дата создания</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stat in stats %}
+        <tr>
+          <td>{{ stat.manager.username }}</td>
+          <td>{{ stat.contacts_count }}</td>
+          <td>{{ stat.organizations_count }}</td>
+          <td>{{ stat.blocked_telegram_count }}</td>
+          <td>{{ stat.created_at|date:"Y-m-d H:i" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>Нет данных для выбранной даты.</p>
+    {% endif %}
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="{% url 'admin_statistics' %}" class="back-button">Вернуться к архиву</a>
+    </div>
+  </div>
+{% endblock %}

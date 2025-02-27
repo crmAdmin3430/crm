@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# SESSION_COOKIE_SECURE = True        # Отправка cookie только по HTTPS
+CSRF_COOKIE_SECURE = True           # Отправка CSRF cookie только по HTTPS
+SECURE_HSTS_SECONDS = 31536000       # Включение HSTS (строгая политика безопасности для HTTPS)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Application definition
 
@@ -37,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crm',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # или любой другой URL, например, '/accounts/login/'
+# LOGIN_REDIRECT_URL = 'home'
 
 ROOT_URLCONF = 'crm_deploy.urls'
 
@@ -106,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 

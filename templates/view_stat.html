@@ -1,10 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    .stat-detail-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .stat-detail-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .stat-detail-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .stat-detail-container th, 
+    .stat-detail-container td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    .stat-detail-container th {
+      background-color: #51A1E3;
+      color: #fff;
+      width: 40%;
+    }
+    .stat-detail-container td {
+      background-color: #f9f9f9;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #51A1E3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: #3b8ac2;
+    }
+  </style>
 
-</body>
-</html>
+  <div class="stat-detail-container">
+    <h2>Детальный отчет</h2>
+    <table>
+      <tr>
+        <th>Менеджер</th>
+        <td>{{ stat.manager.username }}</td>
+      </tr>
+      <tr>
+        <th>Дата отчета</th>
+        <td>{{ stat.report_date|date:"Y-m-d" }}</td>
+      </tr>
+      <tr>
+        <th>Контакты</th>
+        <td>{{ stat.contacts_count }}</td>
+      </tr>
+      <tr>
+        <th>Организации</th>
+        <td>{{ stat.organizations_count }}</td>
+      </tr>
+      <tr>
+        <th>Заблокированные Telegram</th>
+        <td>{{ stat.blocked_telegram_count }}</td>
+      </tr>
+      <tr>
+        <th>Создано</th>
+        <td>{{ stat.created_at|date:"Y-m-d H:i" }}</td>
+      </tr>
+      <tr>
+        <th>Обновлено</th>
+        <td>{{ stat.updated_at|date:"Y-m-d H:i" }}</td>
+      </tr>
+    </table>
+    <div style="text-align:center;">
+      <a href="{% url 'admin_statistics' %}" class="back-button">Вернуться к архиву</a>
+    </div>
+  </div>
+{% endblock %}

@@ -117,7 +117,10 @@
     <div class="nav-buttons">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'daily_report' %}">Отчеты</a>
-        <a href="{% url 'statistics' %}">Статистика</a>
+        <a href="{% url 'statistics' %}">Моя Статистика</a>
+        {% if user.is_staff %}
+            <a href="{% url 'admin_statistics' %}">Архив статистики</a>
+        {% endif %}
     </div>
 </div>
 

@@ -59,11 +59,9 @@
   </style>
 
   <h2>Статистика</h2>
-  <p style="margin-top: 5px">для пользователя {{ user.username }}</p>
-  
   <div class="stats-container">
     <div class="stats-card">
-      <h3>Ваша статистика</h3>
+      <h3>Ваша статистика за день</h3>
       <table>
         <thead>
           <tr>
@@ -76,7 +74,7 @@
         <tbody>
           {% for stat in my_stats %}
           <tr>
-{#            <td>{{ stat.timestamp|date:"Y-m-d H:i" }}</td>#}
+            <td>{{ stat.created_at|date:"Y-m-d H:i" }}</td>
             <td>{{ stat.contacts_count }}</td>
             <td>{{ stat.organizations_count }}</td>
             <td>{{ stat.blocked_telegram_count }}</td>
@@ -94,43 +92,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  
-    <div class="stats-card">
-      <h3>Общая статистика по всем менеджерам</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Менеджер</th>
-            <th>Дата и время</th>
-            <th>Контакты</th>
-            <th>Организации</th>
-            <th>Заблокированные Telegram</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for stat in overall_stats %}
-          <tr>
-            <td>{{ stat.manager.username }}</td>
-{#            <td>{{ stat.timestamp|date:"Y-m-d H:i" }}</td>#}
-            <td>{{ stat.contacts_count }}</td>
-            <td>{{ stat.organizations_count }}</td>
-            <td>{{ stat.blocked_telegram_count }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="5">Нет данных</td>
-          </tr>
-          {% endfor %}
-          <tr class="total-row">
-            <td colspan="2">Итого</td>
-            <td>{{ overall_totals.contacts_count }}</td>
-            <td>{{ overall_totals.organizations_count }}</td>
-            <td>{{ overall_totals.blocked_telegram_count }}</td>
-          </tr>
-        </tbody>
-      </table>
-       <a href="{% url 'export_excel' %}" class="button">Экспорт в Excel</a>
     </div>
   </div>
 {% endblock %}
