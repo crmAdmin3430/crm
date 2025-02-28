@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # или любой другой URL, например, '/accounts/login/'
-# LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'
 
 ROOT_URLCONF = 'crm_deploy.urls'
 
