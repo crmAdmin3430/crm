@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xdd=wx6%1dao#!m6ucaf8f1-0vl!#z3wr!+xwvdh2r)@t$@dhz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["db10f43d-b5cb-4f38-a894-59400dd858d7-00-1urqq1r0ctkn4.spock.replit.dev"]
+ALLOWED_HOSTS = ["*"]
 
 # SESSION_COOKIE_SECURE = True        # Отправка cookie только по HTTPS
 CSRF_COOKIE_SECURE = True           # Отправка CSRF cookie только по HTTPS
